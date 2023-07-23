@@ -17,13 +17,22 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        common.h
         ui/chessboard.h ui/chessboard.cpp
+        chess/chessgame.h chess/chessgame.cpp
+        chess/chessposition.h chess/chessposition.cpp
+)
+
+set(PROJECT_RESOURCES
+        resources.qrc
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(chess_gui
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ${PROJECT_RESOURCES}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET chess_gui APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

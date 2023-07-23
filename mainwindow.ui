@@ -24,7 +24,7 @@
        <enum>QLayout::SetNoConstraint</enum>
       </property>
       <item>
-       <widget class="QGraphicsView" name="graphicsView"/>
+       <widget class="QGraphicsView" name="boardView"/>
       </item>
       <item>
        <widget class="QTabWidget" name="tabWidget">
