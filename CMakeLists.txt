@@ -17,6 +17,7 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        ui/chessboard.h ui/chessboard.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
