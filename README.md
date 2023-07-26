@@ -2,9 +2,7 @@
 
 ## Overview
 
-This is an open source chess gui.
-
-Developped in C++ using the open source Qt framework.
+This is an open source chess gui developped in C++ using the open source Qt framework.
 
 This gui is a Work in Progress and is not useable right now.
 
