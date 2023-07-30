@@ -7,17 +7,17 @@ class ChessPosition
 public:
     ChessPosition();
 
-    ChessPosition(FEN);
+    ChessPosition(Chess::FEN);
 
-    ChessPiece getPiece(SQUARE) const;
+    Chess::ChessPiece getPiece(Chess::SQUARE) const;
 
-    ChessPiece getPiece(COLUMN, ROW) const;
+    Chess::ChessPiece getPiece(Chess::COLUMN, Chess::ROW) const;
 
-    void setPiece(SQUARE, ChessPiece);
+    void setPiece(Chess::SQUARE, Chess::ChessPiece);
 
-    void setPiece(COLUMN, ROW, ChessPiece);
+    void setPiece(Chess::COLUMN, Chess::ROW, Chess::ChessPiece);
 
 private:
-    BITMAP rows01, rows23, rows45, rows67;
+    Chess::BITMAP rows01, rows23, rows45, rows67;
 };
 

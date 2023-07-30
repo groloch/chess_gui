@@ -10,15 +10,15 @@ class ChessGame
 public:
     ChessGame();
 
-    ChessPiece getPiece(SQUARE) const;
+    Chess::ChessPiece getPiece(Chess::SQUARE) const;
 
-    ChessPiece getPiece(COLUMN, ROW) const;
+    Chess::ChessPiece getPiece(Chess::COLUMN, Chess::ROW) const;
 
-    bool hasCheck(SQUARE) const;
+    bool hasCheck(Chess::SQUARE) const;
 
     void update();
 
-    std::vector<ChessMove> getPossibleMoves() const;
+    std::vector<Chess::ChessMove> getPossibleMoves() const;
 
 private:
     ChessPosition current;

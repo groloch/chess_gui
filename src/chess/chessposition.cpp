@@ -1,5 +1,7 @@
 #include "chessposition.h"
 
+using namespace Chess;
+
 ChessPosition::ChessPosition() : rows01 (0), rows23(0), rows45(0), rows67(0)
 {
     setPiece(0, 0, { 1, 2 });

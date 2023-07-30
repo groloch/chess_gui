@@ -1,5 +1,7 @@
 #include "chessgame.h"
 
+using namespace Chess;
+
 ChessGame::ChessGame() : current()
 {
 

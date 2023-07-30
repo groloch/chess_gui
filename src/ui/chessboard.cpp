@@ -2,6 +2,8 @@
 
 #include <QBrush>
 
+using namespace Chess;
+
 ChessBoard::ChessBoard(QGraphicsView * view) : parent(view), selectedSquare(64), reversed(false), QGraphicsScene()
 {
 }

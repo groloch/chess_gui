@@ -23,7 +23,7 @@ private:
 
     ChessGame game;
 
-    SQUARE selectedSquare;
+    Chess::SQUARE selectedSquare;
 
     bool reversed;
 
