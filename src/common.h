@@ -32,5 +32,8 @@ namespace Chess{
         ChessMove() : from(0), to(0), changes(0), moved({0, 0}), taken({0, 0}), associated(0)
         {}
 
+        ~ChessMove(){
+            delete associated;
+        }
     };
 }

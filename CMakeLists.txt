@@ -21,6 +21,7 @@ set(PROJECT_SOURCES
         src/ui/chessboard.h src/ui/chessboard.cpp
         src/chess/chessgame.h src/chess/chessgame.cpp
         src/chess/chessposition.h src/chess/chessposition.cpp
+        src/ui/sprite.h src/ui/sprite.cpp
 )
 
 set(PROJECT_RESOURCES

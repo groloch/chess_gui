@@ -1,10 +1,11 @@
 #include "chessboard.h"
 
 #include <QBrush>
+#include <iostream>
 
 using namespace Chess;
 
-ChessBoard::ChessBoard(QGraphicsView * view) : parent(view), selectedSquare(64), reversed(false), QGraphicsScene()
+ChessBoard::ChessBoard(QGraphicsView * view) : parent(view), selectedSquare(64), reversed(false), mousePressed(0), QGraphicsScene()
 {
 }
 
@@ -73,4 +74,25 @@ void ChessBoard::drawForeground(QPainter * painter, const QRectF &rect) {
         }
     }
     QGraphicsScene::drawForeground(painter, rect);
+}
+
+void ChessBoard::mousePressEvent(QMouseEvent * event) {
+    mousePressed = true;
+    float a = parent->width(), b = parent->height();
+    float size =(a < b ? a : b) / 9;
+}
+
+void ChessBoard::mouseReleaseEvent(QMouseEvent * event) {
+    mousePressed = false;
+}
+
+void ChessBoard::mouseMoveEvent(QMouseEvent * event) {
+    if(mousePressed){
+
+    }
+}
+
+
+ChessBoard::~ChessBoard(){
+    delete parent;
 }

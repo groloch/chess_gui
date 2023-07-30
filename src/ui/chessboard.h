@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QPainter>
 #include <QImage>
+#include <QMouseEvent>
 
 #include "../common.h"
 #include "../chess/chessgame.h"
@@ -15,10 +16,18 @@ public:
 
     void drawForeground(QPainter *, const QRectF&) override;
 
+    void mousePressEvent(QMouseEvent* ) override;
+
+    void mouseReleaseEvent(QMouseEvent*) override;
+
+    void mouseMoveEvent(QMouseEvent *) override;
+
+    ~ChessBoard();
 
 
 
 private:
+
     QGraphicsView * parent;
 
     ChessGame game;
@@ -26,5 +35,7 @@ private:
     Chess::SQUARE selectedSquare;
 
     bool reversed;
+
+    bool mousePressed;
 
 };
