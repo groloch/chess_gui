@@ -13,18 +13,18 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        common.h
-        ui/chessboard.h ui/chessboard.cpp
-        chess/chessgame.h chess/chessgame.cpp
-        chess/chessposition.h chess/chessposition.cpp
+        src/main.cpp
+        src/mainwindow.cpp
+        src/mainwindow.h
+        src/mainwindow.ui
+        src/common.h
+        src/ui/chessboard.h src/ui/chessboard.cpp
+        src/chess/chessgame.h src/chess/chessgame.cpp
+        src/chess/chessposition.h src/chess/chessposition.cpp
 )
 
 set(PROJECT_RESOURCES
-        resources.qrc
+        src/resources.qrc
 
 )
 
