@@ -31,5 +31,6 @@ A first useable version of this product should be available before the end of Se
 * Add an efficient moves generator
 * Implement move list tab
 * Add UCI engine compatibility
+* Improve textures
 
 
