@@ -26,7 +26,6 @@ A first useable version of this product should be available before the end of Se
 
 ## TODO
 
-* Add a texture registry for faster board display
 * Allow to dragndrop/clikclick pieces
 * Add an efficient moves generator
 * Implement move list tab
