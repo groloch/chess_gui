@@ -4,13 +4,9 @@ namespace Chess{
     using SQUARE = unsigned char;
     using ROW = unsigned char;
     using COLUMN = unsigned char;
-
     using PIECE = unsigned char;
-
     using BITMAP = unsigned long long;
-
     using FEN = char const*;
-
     using SPECS = unsigned short;
 
     struct ChessPiece{
@@ -36,4 +32,6 @@ namespace Chess{
             delete associated;
         }
     };
+
+    constexpr SQUARE NULL_SQUARE = (unsigned char)64;
 }

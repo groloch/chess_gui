@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     showMaximized();
 
-    ui->boardView->setScene(new ChessBoard(ui->boardView));
+    ui->boardView->setScene(new ChessBoard());
 }
 
 MainWindow::~MainWindow()

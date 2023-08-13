@@ -1,35 +1,39 @@
 #pragma once
 
 #include <QGraphicsScene>
-#include <QGraphicsView>
 #include <QPainter>
 #include <QImage>
-#include <QMouseEvent>
+#include <QGraphicsSceneMouseEvent>
+#include <QSize>
 
 #include "../common.h"
 #include "../chess/chessgame.h"
+#include "sprite.h"
 
 class ChessBoard : public QGraphicsScene
 {
 public:
-    ChessBoard(QGraphicsView*);
+    ChessBoard();
 
     void drawForeground(QPainter *, const QRectF&) override;
 
-    void mousePressEvent(QMouseEvent* ) override;
+    void drawBackground(QPainter *, const QRectF&) override;
 
-    void mouseReleaseEvent(QMouseEvent*) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent* ) override;
 
-    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent*) override;
+
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *) override;
+
+    void registerTextures();
+
+    void resizeTextures();
 
     ~ChessBoard();
 
 
 
 private:
-
-    QGraphicsView * parent;
-
     ChessGame game;
 
     Chess::SQUARE selectedSquare;
@@ -38,4 +42,7 @@ private:
 
     bool mousePressed;
 
+    Chess::Sprite * pieceTexturesRegistry;
+
+    QSize previousSize;
 };
