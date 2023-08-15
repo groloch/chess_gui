@@ -42,6 +42,8 @@ private:
 
     bool mousePressed;
 
+    bool mouseMoved;
+
     Chess::Sprite * pieceTexturesRegistry;
 
     QSize previousSize;

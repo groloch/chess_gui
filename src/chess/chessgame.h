@@ -20,8 +20,12 @@ public:
 
     std::vector<Chess::ChessMove> getPossibleMoves() const;
 
+    bool getHand() const;
+
 private:
     ChessPosition current;
+
+    bool hand;
 
 };
 

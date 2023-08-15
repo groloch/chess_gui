@@ -2,7 +2,7 @@
 
 using namespace Chess;
 
-ChessGame::ChessGame() : current()
+ChessGame::ChessGame() : current(), hand(true)
 {
 
 }
@@ -26,4 +26,8 @@ void ChessGame::update(){
 std::vector<ChessMove> ChessGame::getPossibleMoves() const{
     std::vector<ChessMove> pm;
     return pm;
+}
+
+bool ChessGame::getHand() const{
+    return hand;
 }

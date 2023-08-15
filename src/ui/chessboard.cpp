@@ -6,7 +6,7 @@
 
 using namespace Chess;
 
-ChessBoard::ChessBoard() : selectedSquare(64), reversed(false), mousePressed(0), game(), previousSize(0, 0), QGraphicsScene(){
+ChessBoard::ChessBoard() : selectedSquare(NULL_SQUARE), reversed(false), mousePressed(0), mouseMoved(0), game(), previousSize(0, 0), QGraphicsScene(){
     pieceTexturesRegistry = new Sprite[64];
     registerTextures();
 }
@@ -53,9 +53,15 @@ void ChessBoard::drawForeground(QPainter * painter, const QRectF &rect) {
     for(COLUMN c = 0; c < 8; c++){
         for(ROW r = 0; r < 8; r++){
             Sprite* sprite = &pieceTexturesRegistry[r * 8 +  c];
-            if(sprite->getSquare() != NULL_SQUARE){
+            if(sprite->getSquare() != NULL_SQUARE && sprite->getSquare() != selectedSquare){
                 painter->drawImage(QPoint(sprite->getX(), sprite->getY()), * sprite->getTexture());
             }
+        }
+    }
+    if(selectedSquare != NULL_SQUARE){
+        Sprite* sprite = &pieceTexturesRegistry[selectedSquare];
+        if(sprite->getSquare() != NULL_SQUARE){
+            painter->drawImage(QPoint(sprite->getX(), sprite->getY()), * sprite->getTexture());
         }
     }
     QGraphicsScene::drawForeground(painter, rect);
@@ -69,10 +75,14 @@ void ChessBoard::mousePressEvent(QGraphicsSceneMouseEvent * event) {
     float a = previousSize.width(), b = previousSize.height();
     float size =(a < b ? a : b) / 9;
     QPointF pos = event->scenePos();
-    int bx = (int)(4 + pos.x() / size), by = (int)(4 - pos.y() / size);
+    COLUMN bx = (COLUMN)(4 + pos.x() / size);
+    ROW by = (ROW)(4 - pos.y() / size);
     if(bx >= 0 and bx <= 7 and by >= 0 and by <= 7){
         if(event->button() == 1){
-            mousePressed = true;
+            ChessPiece piece = game.getPiece(bx, by);
+            if(piece.color == game.getHand()){
+                mousePressed = true;
+            }
         }
     }
 
@@ -80,12 +90,52 @@ void ChessBoard::mousePressEvent(QGraphicsSceneMouseEvent * event) {
 }
 
 void ChessBoard::mouseReleaseEvent(QGraphicsSceneMouseEvent * event) {
-    mousePressed = false;
+    float a = previousSize.width(), b = previousSize.height();
+    float size =(a < b ? a : b) / 9;
+    QPointF pos = event->scenePos();
+    COLUMN bx = (COLUMN)(4 + pos.x() / size);
+    ROW by = (ROW)(4 - pos.y() / size);
+    if(mousePressed){
+        if(mouseMoved){
+            COLUMN c = selectedSquare & 0b111;
+            ROW r = selectedSquare >> 3;
+            //TODO move check
+            pieceTexturesRegistry[selectedSquare].move(size*((reversed ? 7-c : c)-4), size*((reversed ? r : 7-r)-4));
+            mousePressed = false;
+            selectedSquare = NULL_SQUARE;
+            update();
+        }else{
+            std::cout << 1 << std::endl;
+            if(game.getPiece(bx, by).color == game.getHand()){
+                if(bx + by * 8 != selectedSquare){
+                    selectedSquare = bx + by * 8;
+                }else{
+                    selectedSquare = NULL_SQUARE;
+                }
+                update();
+            }else{
+                if(selectedSquare != NULL_SQUARE){
+                    // TODO move check
+                    selectedSquare = NULL_SQUARE;
+                }
+            }
+        }
+    }
 }
 
 void ChessBoard::mouseMoveEvent(QGraphicsSceneMouseEvent * event) {
+    float a = previousSize.width(), b = previousSize.height();
+    float size =(a < b ? a : b) / 9;
+    QPointF pos = event->scenePos();
+    COLUMN bx = (COLUMN)(4 + pos.x() / size);
+    ROW by = (ROW)(4 - pos.y() / size);
     if(mousePressed){
-
+        if(selectedSquare == NULL_SQUARE){
+            selectedSquare = bx + by * 8;
+        }
+        mouseMoved = true;
+        pieceTexturesRegistry[selectedSquare].move(event->scenePos().x() - size/2, event->scenePos().y() - size/2);
+        update();
     }
 }
 
